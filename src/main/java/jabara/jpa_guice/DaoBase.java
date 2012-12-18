@@ -5,6 +5,7 @@ package jabara.jpa_guice;
 
 import java.io.Serializable;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import com.google.inject.Inject;
@@ -21,4 +22,11 @@ public class DaoBase implements Serializable {
     @Inject
     @javax.inject.Inject
     protected EntityManagerFactory emf;
+
+    /**
+     * @return {@link EntityManager}オブジェクト.
+     */
+    public EntityManager getEntityManager() {
+        return this.emf.createEntityManager();
+    }
 }
