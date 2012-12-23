@@ -18,7 +18,7 @@
 
 		<dependency>
 			<groupId>jabaraster</groupId>
-			<artifactId>jabara-general</artifactId>
+			<artifactId>jabara-jpa</artifactId>
 			<version>1.0</version>
 		</dependency>
 

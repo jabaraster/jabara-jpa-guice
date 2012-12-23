@@ -3,6 +3,10 @@
  */
 package jabara.jpa_guice;
 
+import jabara.general.ArgUtil;
+import jabara.general.NotFound;
+import jabara.jpa.entity.IEntity;
+
 import java.io.Serializable;
 
 import javax.persistence.EntityManager;
@@ -28,5 +32,16 @@ public class DaoBase implements Serializable {
      */
     public EntityManager getEntityManager() {
         return this.emf.createEntityManager();
+    }
+
+    /**
+     * @param pEntityType
+     * @param pId
+     * @return
+     * @throws NotFound
+     */
+    protected <E extends IEntity> E findByIdCore(final Class<E> pEntityType, final long pId) throws NotFound {
+        ArgUtil.checkNull(pEntityType, "pEntityType"); //$NON-NLS-1$
+        return getEntityManager().find(pEntityType, Long.valueOf(pId));
     }
 }
