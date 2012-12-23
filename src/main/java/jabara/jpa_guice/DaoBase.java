@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import com.google.inject.Inject;
 
@@ -42,6 +44,23 @@ public class DaoBase implements Serializable {
      */
     protected <E extends IEntity> E findByIdCore(final Class<E> pEntityType, final long pId) throws NotFound {
         ArgUtil.checkNull(pEntityType, "pEntityType"); //$NON-NLS-1$
-        return getEntityManager().find(pEntityType, Long.valueOf(pId));
+        final E ret = getEntityManager().find(pEntityType, Long.valueOf(pId));
+        if (ret == null) {
+            throw new NotFound();
+        }
+        return ret;
+    }
+
+    /**
+     * @param pQuery
+     * @return
+     * @throws NotFound
+     */
+    protected static <E extends IEntity> E getSingleResult(final TypedQuery<E> pQuery) throws NotFound {
+        try {
+            return pQuery.getSingleResult();
+        } catch (final NoResultException e) {
+            throw new NotFound();
+        }
     }
 }
