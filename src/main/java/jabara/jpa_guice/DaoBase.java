@@ -39,28 +39,30 @@ public class DaoBase implements Serializable {
     /**
      * @param pEntityType
      * @param pId
-     * @return
+     * @return エンティティオブジェクト.
      * @throws NotFound
+     * @param <E> 結果エンティティオブジェクトの型.
      */
     protected <E extends IEntity> E findByIdCore(final Class<E> pEntityType, final long pId) throws NotFound {
         ArgUtil.checkNull(pEntityType, "pEntityType"); //$NON-NLS-1$
         final E ret = getEntityManager().find(pEntityType, Long.valueOf(pId));
         if (ret == null) {
-            throw new NotFound();
+            throw NotFound.GLOBAL;
         }
         return ret;
     }
 
     /**
      * @param pQuery
-     * @return
+     * @return エンティティオブジェクト.
      * @throws NotFound
+     * @param <E> 結果エンティティオブジェクトの型.
      */
     protected static <E extends IEntity> E getSingleResult(final TypedQuery<E> pQuery) throws NotFound {
         try {
             return pQuery.getSingleResult();
         } catch (final NoResultException e) {
-            throw new NotFound();
+            throw NotFound.GLOBAL;
         }
     }
 }
