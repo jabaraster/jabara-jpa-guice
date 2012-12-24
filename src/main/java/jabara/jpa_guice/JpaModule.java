@@ -49,7 +49,7 @@ public class JpaModule extends AbstractModule {
         ArgUtil.checkNull(pPropertiesProducer, "pPropertiesProducer"); //$NON-NLS-1$
 
         final Map<String, String> properties = pPropertiesProducer.produce();
-        this.entityManagerFactory = wrap(Persistence.createEntityManagerFactory( //
+        this.entityManagerFactory = ThreadLocalEntityManagerFactoryHandler.wrap(Persistence.createEntityManagerFactory( //
                 pPersistenceUnitName //
                 , properties == null ? new HashMap<String, String>() : properties));
     }
@@ -89,13 +89,5 @@ public class JpaModule extends AbstractModule {
 
     private static boolean isToStringMethod(final Method pMethod) {
         return "toString".equals(pMethod.getName()) && pMethod.getParameterTypes().length == 0; //$NON-NLS-1$
-    }
-
-    private static EntityManagerFactory wrap(final EntityManagerFactory pOriginal) {
-        return (EntityManagerFactory) Proxy.newProxyInstance( //
-                JpaModule.class.getClassLoader() //
-                , new Class<?>[] { EntityManagerFactory.class } //
-                , new ThreadLocalEntityManagerFactoryHandler(pOriginal) //
-                );
     }
 }

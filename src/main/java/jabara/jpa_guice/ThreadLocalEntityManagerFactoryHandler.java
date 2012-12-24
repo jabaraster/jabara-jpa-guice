@@ -5,6 +5,7 @@ import jabara.general.ReflectionUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +13,7 @@ import javax.persistence.EntityManagerFactory;
 /**
  * @author jabaraster
  */
-class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler {
+public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler {
 
     private final ThreadLocal<EntityManager> entityManagerHolder = new ThreadLocal<EntityManager>();
 
@@ -52,6 +53,21 @@ class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler {
         });
         this.entityManagerHolder.set(em);
         return em;
+    }
+
+    /**
+     * スレッドローカルな{@link EntityManager}を返すような{@link EntityManagerFactory}にラップします.
+     * 
+     * @param pOriginal
+     * @return ラップした結果.
+     */
+    public static EntityManagerFactory wrap(final EntityManagerFactory pOriginal) {
+        ArgUtil.checkNull(pOriginal, "pOriginal"); //$NON-NLS-1$
+        return (EntityManagerFactory) Proxy.newProxyInstance( //
+                JpaModule.class.getClassLoader() //
+                , new Class<?>[] { EntityManagerFactory.class } //
+                , new ThreadLocalEntityManagerFactoryHandler(pOriginal) //
+                );
     }
 
 }

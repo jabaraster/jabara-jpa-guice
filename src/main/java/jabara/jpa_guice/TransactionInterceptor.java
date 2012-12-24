@@ -18,7 +18,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * 
  * @author jabaraster
  */
-class TransactionInterceptor implements MethodInterceptor {
+public class TransactionInterceptor implements MethodInterceptor {
 
     private final EntityManagerFactory entityManagerFactory;
 
