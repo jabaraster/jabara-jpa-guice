@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.Predicate;
 
 import com.google.inject.Inject;
 
@@ -20,14 +21,19 @@ import com.google.inject.Inject;
  * @author jabaraster
  */
 public class DaoBase implements Serializable {
-    private static final long      serialVersionUID = -6876768771003819068L;
+    private static final long       serialVersionUID = -6876768771003819068L;
+
+    /**
+     * 
+     */
+    public static final Predicate[] EMPTY_PREDICATE  = {};
 
     /**
      * 
      */
     @Inject
     @javax.inject.Inject
-    protected EntityManagerFactory emf;
+    protected EntityManagerFactory  emf;
 
     /**
      * @return {@link EntityManager}オブジェクト.
@@ -37,10 +43,12 @@ public class DaoBase implements Serializable {
     }
 
     /**
-     * @param pEntityType
-     * @param pId
+     * ID値が一致するエンティティを検索して返します.
+     * 
+     * @param pEntityType 結果のエンティティの型.
+     * @param pId ID値.
      * @return エンティティオブジェクト.
-     * @throws NotFound
+     * @throws NotFound 該当エンティティがない場合.
      * @param <E> 結果エンティティオブジェクトの型.
      */
     protected <E extends IEntity> E findByIdCore(final Class<E> pEntityType, final long pId) throws NotFound {
@@ -53,12 +61,14 @@ public class DaoBase implements Serializable {
     }
 
     /**
-     * @param pQuery
+     * 結果が高々１件のクエリを実行して結果を返します. <br>
+     * 
+     * @param pQuery クエリオブジェクト.
      * @return エンティティオブジェクト.
-     * @throws NotFound
-     * @param <E> 結果エンティティオブジェクトの型.
+     * @throws NotFound 該当がない場合.
+     * @param <E> 結果オブジェクトの型.
      */
-    protected static <E extends IEntity> E getSingleResult(final TypedQuery<E> pQuery) throws NotFound {
+    protected static <E> E getSingleResult(final TypedQuery<E> pQuery) throws NotFound {
         try {
             return pQuery.getSingleResult();
         } catch (final NoResultException e) {

@@ -58,7 +58,7 @@ public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler
     /**
      * スレッドローカルな{@link EntityManager}を返すような{@link EntityManagerFactory}にラップします.
      * 
-     * @param pOriginal
+     * @param pOriginal オリジナル.
      * @return ラップした結果.
      */
     public static EntityManagerFactory wrap(final EntityManagerFactory pOriginal) {
