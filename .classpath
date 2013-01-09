@@ -9,13 +9,9 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/javax/inject/javax.inject/1/javax.inject-1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/jabaraster/jabara-jpa/1.0/jabara-jpa-1.0.jar" sourcepath="M2_REPO/jabaraster/jabara-jpa/1.0/jabara-jpa-1.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/jabaraster/jabara-jpa/1.0/jabara-jpa-1.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/jabaraster/jabara-general/1.0/jabara-general-1.0.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+  <classpathentry kind="src" path="/jabara-general"/>
+  <classpathentry kind="src" path="/jabara-jpa"/>
   <classpathentry kind="var" path="M2_REPO/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4.jar" sourcepath="M2_REPO/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4-javadoc.jar!/" name="javadoc_location"/>

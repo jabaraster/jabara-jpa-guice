@@ -16,11 +16,16 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>jabaraster</groupId>
-			<artifactId>jabara-jpa</artifactId>
-			<version>1.0</version>
-		</dependency>
+        <dependency>
+            <groupId>jabaraster</groupId>
+            <artifactId>jabara-general</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jabaraster</groupId>
+            <artifactId>jabara-jpa</artifactId>
+            <version>1.1</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>

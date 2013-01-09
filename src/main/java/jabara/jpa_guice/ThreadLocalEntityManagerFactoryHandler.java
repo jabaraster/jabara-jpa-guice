@@ -64,7 +64,7 @@ public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler
     public static EntityManagerFactory wrap(final EntityManagerFactory pOriginal) {
         ArgUtil.checkNull(pOriginal, "pOriginal"); //$NON-NLS-1$
         return (EntityManagerFactory) Proxy.newProxyInstance( //
-                JpaModule.class.getClassLoader() //
+                pOriginal.getClass().getClassLoader() //
                 , new Class<?>[] { EntityManagerFactory.class } //
                 , new ThreadLocalEntityManagerFactoryHandler(pOriginal) //
                 );
@@ -72,7 +72,7 @@ public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler
 
     private static EntityManager wrap(final EntityManager pOriginal, final Runnable pOperationAtClose) {
         return (EntityManager) Proxy.newProxyInstance( //
-                ThreadLocalEntityManagerFactoryHandler.class.getClassLoader() //
+                pOriginal.getClass().getClassLoader() //
                 , new Class<?>[] { EntityManager.class } //
                 , new CloseBarrierEntityManagerHandler(pOriginal, pOperationAtClose) //
                 );
