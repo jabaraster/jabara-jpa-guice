@@ -4,7 +4,7 @@
 
 	<groupId>jabaraster</groupId>
 	<artifactId>jabara-jpa-guice</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 
 	<name>jabara-jpa-guice</name>
