@@ -45,7 +45,7 @@ public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler
             return em;
         }
 
-        em = JpaModule.wrap(this.original.createEntityManager(), new Runnable() {
+        em = ThreadLocalEntityManagerFactoryHandler.wrap(this.original.createEntityManager(), new Runnable() {
             @Override
             public void run() {
                 ThreadLocalEntityManagerFactoryHandler.this.entityManagerHolder.set(null);
@@ -67,6 +67,14 @@ public class ThreadLocalEntityManagerFactoryHandler implements InvocationHandler
                 JpaModule.class.getClassLoader() //
                 , new Class<?>[] { EntityManagerFactory.class } //
                 , new ThreadLocalEntityManagerFactoryHandler(pOriginal) //
+                );
+    }
+
+    private static EntityManager wrap(final EntityManager pOriginal, final Runnable pOperationAtClose) {
+        return (EntityManager) Proxy.newProxyInstance( //
+                ThreadLocalEntityManagerFactoryHandler.class.getClassLoader() //
+                , new Class<?>[] { EntityManager.class } //
+                , new CloseBarrierEntityManagerHandler(pOriginal, pOperationAtClose) //
                 );
     }
 

@@ -8,11 +8,9 @@ import jabara.general.IProducer;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -66,10 +64,9 @@ public class JpaModule extends AbstractModule {
     private void configureTransactionInterceptor() {
         final Matcher<? super Class<?>> classMatcher = Matchers.subclassesOf(DaoBase.class);
         final Matcher<? super Method> methodMatcher = new AbstractMatcher<Method>() {
-            @SuppressWarnings("synthetic-access")
             @Override
             public boolean matches(final Method pT) {
-                if (isToStringMethod(pT)) {
+                if (pT.getDeclaringClass().equals(Object.class)) {
                     return false;
                 }
                 return Modifier.isPublic(pT.getModifiers());
@@ -77,17 +74,5 @@ public class JpaModule extends AbstractModule {
         };
         final TransactionInterceptor ti = new TransactionInterceptor(this.entityManagerFactory);
         bindInterceptor(classMatcher, methodMatcher, ti);
-    }
-
-    static EntityManager wrap(final EntityManager pOriginal, final Runnable pOperationAtClose) {
-        return (EntityManager) Proxy.newProxyInstance( //
-                JpaModule.class.getClassLoader() //
-                , new Class<?>[] { EntityManager.class } //
-                , new CloseBarrierEntityManagerHandler(pOriginal, pOperationAtClose) //
-                );
-    }
-
-    private static boolean isToStringMethod(final Method pMethod) {
-        return "toString".equals(pMethod.getName()) && pMethod.getParameterTypes().length == 0; //$NON-NLS-1$
     }
 }
