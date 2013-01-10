@@ -1,10 +1,10 @@
 /**
  * 
  */
-package jabara.jpa_guice.util;
+package jabara.jpa_guice;
 
 import jabara.general.IProducer;
-import jabara.jpa.util.DaoBase;
+import jabara.jpa.JpaDaoBase;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -57,7 +57,7 @@ public class MultiPersistenceUnitJpaModule extends JpaModuleBase {
     }
 
     /**
-     * @see jabara.jpa_guice.util.JpaModuleBase#getTransactionTargetClassMatcher()
+     * @see jabara.jpa_guice.JpaModuleBase#getTransactionTargetClassMatcher()
      */
     @Override
     protected Matcher<? super Class<?>> getTransactionTargetClassMatcher() {
@@ -65,7 +65,7 @@ public class MultiPersistenceUnitJpaModule extends JpaModuleBase {
     }
 
     /**
-     * @see jabara.jpa_guice.util.JpaModuleBase#getTransactionTargetMethodMatcher()
+     * @see jabara.jpa_guice.JpaModuleBase#getTransactionTargetMethodMatcher()
      */
     @Override
     protected Matcher<Method> getTransactionTargetMethodMatcher() {
@@ -73,14 +73,14 @@ public class MultiPersistenceUnitJpaModule extends JpaModuleBase {
     }
 
     /**
-     * @see jabara.jpa_guice.util.JpaModuleBase#preConfigure()
+     * @see jabara.jpa_guice.JpaModuleBase#preConfigure()
      */
     @Override
     protected void preConfigure() {
-        this.bind(DaoBase.class).annotatedWith(this.daoAnnotationType).toInstance(new SafeDao(this.entityManagerFactory));
+        this.bind(JpaDaoBase.class).annotatedWith(this.daoAnnotationType).toInstance(new SafeDao(this.entityManagerFactory));
     }
 
-    private static class SafeDao extends DaoBase {
+    private static class SafeDao extends JpaDaoBase {
         private static final long serialVersionUID = -3861066152394738948L;
 
         SafeDao(final EntityManagerFactory pEmf) {

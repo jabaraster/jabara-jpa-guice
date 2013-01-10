@@ -1,13 +1,11 @@
 /**
  * 
  */
-package jabara.jpa_guice.util;
+package jabara.jpa_guice;
 
 import jabara.general.ArgUtil;
 import jabara.general.IProducer;
 import jabara.general.ReflectionUtil;
-import jabara.jpa_guice.ThreadLocalEntityManagerFactoryHandler;
-import jabara.jpa_guice.TransactionInterceptor;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

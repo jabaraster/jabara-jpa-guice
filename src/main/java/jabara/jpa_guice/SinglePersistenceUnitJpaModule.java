@@ -1,12 +1,14 @@
 /**
  * 
  */
-package jabara.jpa_guice.util;
+package jabara.jpa_guice;
 
 import jabara.general.IProducer;
 
 import java.lang.reflect.Method;
 import java.util.Map;
+
+import javax.persistence.EntityManagerFactory;
 
 import com.google.inject.matcher.Matcher;
 import com.google.inject.matcher.Matchers;
@@ -14,12 +16,12 @@ import com.google.inject.matcher.Matchers;
 /**
  * @author jabaraster
  */
-public class SingleJpaModule extends JpaModuleBase {
+public class SinglePersistenceUnitJpaModule extends JpaModuleBase {
 
     /**
      * @param pPersistenceUnitName -
      */
-    public SingleJpaModule(final String pPersistenceUnitName) {
+    public SinglePersistenceUnitJpaModule(final String pPersistenceUnitName) {
         super(pPersistenceUnitName);
     }
 
@@ -27,12 +29,12 @@ public class SingleJpaModule extends JpaModuleBase {
      * @param pPersistenceUnitName -
      * @param pPropertiesProducer -
      */
-    public SingleJpaModule(final String pPersistenceUnitName, final IProducer<Map<String, String>> pPropertiesProducer) {
+    public SinglePersistenceUnitJpaModule(final String pPersistenceUnitName, final IProducer<Map<String, String>> pPropertiesProducer) {
         super(pPersistenceUnitName, pPropertiesProducer);
     }
 
     /**
-     * @see jabara.jpa_guice.util.JpaModuleBase#getTransactionTargetClassMatcher()
+     * @see jabara.jpa_guice.JpaModuleBase#getTransactionTargetClassMatcher()
      */
     @Override
     protected Matcher<? super Class<?>> getTransactionTargetClassMatcher() {
@@ -40,10 +42,18 @@ public class SingleJpaModule extends JpaModuleBase {
     }
 
     /**
-     * @see jabara.jpa_guice.util.JpaModuleBase#getTransactionTargetMethodMatcher()
+     * @see jabara.jpa_guice.JpaModuleBase#getTransactionTargetMethodMatcher()
      */
     @Override
     protected Matcher<Method> getTransactionTargetMethodMatcher() {
         return PUBlIC_METHOD_MATCHER;
+    }
+
+    /**
+     * @see jabara.jpa_guice.JpaModuleBase#preConfigure()
+     */
+    @Override
+    protected void preConfigure() {
+        this.bind(EntityManagerFactory.class).toInstance(this.entityManagerFactory);
     }
 }
