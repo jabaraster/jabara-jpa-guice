@@ -6,6 +6,8 @@ package jabara.jpa_guice;
 import jabara.general.ArgUtil;
 import jabara.general.IProducer;
 import jabara.general.ReflectionUtil;
+import jabara.jpa.ThreadLocalEntityManagerFactoryHandler;
+import jabara.jpa.TransactionInterceptor;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
