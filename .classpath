@@ -25,14 +25,14 @@
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/4.1.2/hibernate-core-4.1.2.jar" sourcepath="M2_REPO/org/hibernate/hibernate-core/4.1.2/hibernate-core-4.1.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-entitymanager/4.1.2/hibernate-entitymanager-4.1.2.jar" sourcepath="M2_REPO/org/hibernate/hibernate-entitymanager/4.1.2/hibernate-entitymanager-4.1.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar" sourcepath="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/jabaraster/jabara-general/1.2/jabara-general-1.2.jar" sourcepath="M2_REPO/jabaraster/jabara-general/1.2/jabara-general-1.2-sources.jar">
+  <classpathentry kind="lib" path="/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-general/1.7.1/jabara-general-1.7.1.jar" sourcepath="/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-general/1.7.1/jabara-general-1.7.1-sources.jar">
     <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/jabaraster/jabara-general/1.2/jabara-general-1.2-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-general/1.7.1/jabara-general-1.7.1-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/jabaraster/jabara-jpa/1.6/jabara-jpa-1.6.jar" sourcepath="M2_REPO/jabaraster/jabara-jpa/1.6/jabara-jpa-1.6-sources.jar">
+  <classpathentry kind="lib" path="/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-jpa/1.7.0/jabara-jpa-1.7.0.jar" sourcepath="/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-jpa/1.7.0/jabara-jpa-1.7.0-sources.jar">
     <attributes>
-      <attribute value="jar:file:/Users/jabaraster/.m2/repository/jabaraster/jabara-jpa/1.6/jabara-jpa-1.6-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="jar:file:/Users/jabaraster/Documents/Develop/Java/maven/jabaraster/jabara-jpa/1.7.0/jabara-jpa-1.7.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA.jar" sourcepath="M2_REPO/org/javassist/javassist/3.15.0-GA/javassist-3.15.0-GA-sources.jar">
@@ -52,5 +52,5 @@
       <attribute value="jar:file:/Users/jabaraster/.m2/repository/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 </classpath>
