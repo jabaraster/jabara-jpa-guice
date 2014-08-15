@@ -21,8 +21,8 @@ public class HibernateEntityManagerProperitesBuilder {
     /**
      * @return -
      */
-    public Map<String, String> build() {
-        final Map<String, String> ret = new HashMap<String, String>();
+    public Map<String, Object> build() {
+        final Map<String, Object> ret = new HashMap<String, Object>();
         ret.put(PersistenceXmlPropertyNames.Hibernate.DIALECT, this.dialectClassName);
         ret.put(PersistenceXmlPropertyNames.DRIVER, this.driverClassName);
         ret.put(PersistenceXmlPropertyNames.JDBC_URL, this.jdbcUrl);

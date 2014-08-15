@@ -35,7 +35,7 @@ public class H2PropertiesProducer implements IFallbackableProducer {
      * @see jabara.general.IProducer#produce()
      */
     @Override
-    public Map<String, String> produce() {
+    public Map<String, Object> produce() {
         return new HibernateEntityManagerProperitesBuilder() //
                 .setDbKind(H2.INSTANCE) //
                 .setJdbcPassword("") // //$NON-NLS-1$

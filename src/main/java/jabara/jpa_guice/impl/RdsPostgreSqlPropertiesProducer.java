@@ -28,7 +28,7 @@ public class RdsPostgreSqlPropertiesProducer implements IFallbackableProducer {
      * @see jabara.general.IProducer#produce()
      */
     @Override
-    public Map<String, String> produce() {
+    public Map<String, Object> produce() {
         final String dbName = EnvironmentUtil.getStringUnsafe("RDS_DB_NAME"); //$NON-NLS-1$
         final String port = EnvironmentUtil.getStringUnsafe("RDS_PORT"); //$NON-NLS-1$
         final String hostname = EnvironmentUtil.getStringUnsafe("RDS_HOSTNAME"); //$NON-NLS-1$

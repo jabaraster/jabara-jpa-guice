@@ -54,6 +54,8 @@ public abstract class JpaModuleBase extends AbstractModule {
      */
     public JpaModuleBase(final String pPersistenceUnitName) {
         this(pPersistenceUnitName, new IProducer<Map<String, String>>() {
+            private static final long serialVersionUID = 3225452307725517542L;
+
             @Override
             public Map<String, String> produce() {
                 return new HashMap<String, String>();

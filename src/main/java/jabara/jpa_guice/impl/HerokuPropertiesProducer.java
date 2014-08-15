@@ -30,7 +30,7 @@ public class HerokuPropertiesProducer implements IFallbackableProducer {
      * @see jabara.general.IProducer#produce()
      */
     @Override
-    public Map<String, String> produce() {
+    public Map<String, Object> produce() {
         try {
             final URI dbUri = new URI(EnvironmentUtil.getStringUnsafe("DATABASE_URL")); //$NON-NLS-1$
 
